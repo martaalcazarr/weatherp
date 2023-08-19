@@ -1,10 +1,17 @@
 import WeatherApp from "./components/WeatherApp"
+import { WeatherProvider } from "./context/WeatherProvider"
 
 function App() {
 
 
   return (
-    <WeatherApp />
+    <WeatherProvider>
+      <header>
+        <h1>The Weather</h1>
+      </header>
+      <WeatherApp />
+    </WeatherProvider>
+
   )
 }
 
