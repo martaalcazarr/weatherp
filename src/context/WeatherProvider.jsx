@@ -4,6 +4,8 @@ const WeatherContext = createContext()
 
 const WeatherProvider = ({children}) => {
 
+
+    
     const [search, setSearch] = useState({
         city: '',
         country: ''
@@ -15,11 +17,17 @@ const WeatherProvider = ({children}) => {
             [e.target.name]: e.target.value
         })
     }
+
+    const checkWeather = data => {
+        console.log(data)
+    }
+
     return(
         <WeatherContext.Provider
             value={{
                 search,
-                dataSearch
+                dataSearch,
+                checkWeather
             }}
         >
             {children}
