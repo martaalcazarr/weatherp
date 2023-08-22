@@ -19,9 +19,9 @@ const WeatherProvider = ({children}) => {
         })
     }
 
-    const checkWeather = async data => {
+    const checkWeather = async dataForm => {
         try {
-            const {city, country} = data
+            const {city, country} = dataForm
 
             const appId = import.meta.env.VITE_API_KEY
 
