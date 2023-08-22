@@ -10,6 +10,8 @@ const WeatherProvider = ({children}) => {
         country: ''
     })
 
+    const [result, setResult] = useState({})
+
     const dataSearch = e => {
         setSearch({
             ...search,
@@ -29,6 +31,9 @@ const WeatherProvider = ({children}) => {
             const {lat, lon} = data[0]
 
             const urlWeather = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${appId}`
+
+            const {data: weather} = await axios(urlWeather)
+            setResult(weather)
         } catch (error) {
             console.log(error)
         }
@@ -39,7 +44,8 @@ const WeatherProvider = ({children}) => {
             value={{
                 search,
                 dataSearch,
-                checkWeather
+                checkWeather, 
+                result
             }}
         >
             {children}
