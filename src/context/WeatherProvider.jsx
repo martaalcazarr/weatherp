@@ -3,8 +3,6 @@ import { useState, createContext } from "react";
 const WeatherContext = createContext()
 
 const WeatherProvider = ({children}) => {
-
-
     
     const [search, setSearch] = useState({
         city: '',
