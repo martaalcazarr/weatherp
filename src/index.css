@@ -87,3 +87,30 @@ form {
   align-items: center;
   width: 100%;
 }
+
+.weather{
+
+}
+
+.weather > p:first-of-type{
+  font-size: 4rem;
+  font-weight: 700;
+}
+
+.weather p{
+  text-align: center;
+  margin: 0;
+  font-size: 1.8rem;
+}
+
+.weather p span{
+  font-size: 0.8rem;
+  vertical-align: super;
+}
+
+.min_max{
+  margin-top: 1rem;
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+}

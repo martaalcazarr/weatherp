@@ -8,17 +8,20 @@ const Result = () => {
     //to change kelvin temperature to celcius
     const kelvin = 273.15
   return (
-    <div className="container">
+    <div className="container weather">
         <h2>The climate on {name} is: </h2>    
         <p>
-            Current Temperature: {parseInt(main.temp - kelvin)} <span>&#x2103;</span>
+            {parseInt(main.temp - kelvin)} <span>&#x2103;</span>
+        </p>
+        <div className="min_max">
+        <p>
+            Min: {parseInt(main.temp_min - kelvin)} <span>&#x2103;</span>
         </p>
         <p>
-            Min Temperature: {parseInt(main.temp_min - kelvin)} <span>&#x2103;</span>
+            Max: {parseInt(main.temp_max - kelvin)} <span>&#x2103;</span>
         </p>
-        <p>
-            Max Temperature: {parseInt(main.temp_max - kelvin)} <span>&#x2103;</span>
-        </p>
+        </div>
+       
        
     </div>
   )
