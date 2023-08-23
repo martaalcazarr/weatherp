@@ -1,19 +1,19 @@
-import Form from "./Form"
-import Result from "./Result"
-import useWeather from "../hooks/useWeather"
+import Form from "./Form";
+import Result from "./Result";
+import Loading from "./Loading";
+import useWeather from "../hooks/useWeather";
 
 const WeatherApp = () => {
-
-  const {result} = useWeather()
+  const { result, loading, noResult } = useWeather();
   return (
     <>
-    <main className="two-col">
+      <main className="two-col">
         <Form />
 
-        {result?.name && <Result />}
-    </main>
+        {loading ? <Loading /> : result?.name ? <Result /> : <p>{noResult}</p>}
+      </main>
     </>
-  )
-}
+  );
+};
 
-export default WeatherApp
+export default WeatherApp;

@@ -12,6 +12,10 @@ const WeatherProvider = ({children}) => {
 
     const [result, setResult] = useState({})
 
+    const [loading, setLoading] = useState(false)
+
+    const [noResult, setNoResult] = useState(false)
+
     const dataSearch = e => {
         setSearch({
             ...search,
@@ -20,6 +24,10 @@ const WeatherProvider = ({children}) => {
     }
 
     const checkWeather = async dataForm => {
+
+        setLoading(true)
+        setNoResult(false)
+
         try {
             const {city, country} = dataForm
 
@@ -34,8 +42,11 @@ const WeatherProvider = ({children}) => {
 
             const {data: weather} = await axios(urlWeather)
             setResult(weather)
+            
         } catch (error) {
-            console.log(error)
+           setNoResult('No results found')
+        }finally{
+            setLoading(false)
         }
     }
 
@@ -45,7 +56,9 @@ const WeatherProvider = ({children}) => {
                 search,
                 dataSearch,
                 checkWeather, 
-                result
+                result,
+                loading,
+                noResult
             }}
         >
             {children}
