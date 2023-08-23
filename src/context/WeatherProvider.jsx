@@ -10,6 +10,12 @@ const WeatherProvider = ({children}) => {
         country: ''
     })
 
+    const [result, setResult] = useState({})
+
+    const [loading, setLoading] = useState(false)
+
+    const [noResult, setNoResult] = useState(false)
+
     const dataSearch = e => {
         setSearch({
             ...search,
@@ -17,9 +23,13 @@ const WeatherProvider = ({children}) => {
         })
     }
 
-    const checkWeather = async data => {
+    const checkWeather = async dataForm => {
+
+        setLoading(true)
+        setNoResult(false)
+
         try {
-            const {city, country} = data
+            const {city, country} = dataForm
 
             const appId = import.meta.env.VITE_API_KEY
 
@@ -29,8 +39,14 @@ const WeatherProvider = ({children}) => {
             const {lat, lon} = data[0]
 
             const urlWeather = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${appId}`
+
+            const {data: weather} = await axios(urlWeather)
+            setResult(weather)
+            
         } catch (error) {
-            console.log(error)
+           setNoResult('No results found')
+        }finally{
+            setLoading(false)
         }
     }
 
@@ -39,7 +55,10 @@ const WeatherProvider = ({children}) => {
             value={{
                 search,
                 dataSearch,
-                checkWeather
+                checkWeather, 
+                result,
+                loading,
+                noResult
             }}
         >
             {children}

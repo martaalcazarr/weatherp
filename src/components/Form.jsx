@@ -16,7 +16,7 @@ const Form = () => {
             setAlert('All fields are mandatory')
             return
         }
-
+        setAlert('')
         checkWeather(search)
     }
 
